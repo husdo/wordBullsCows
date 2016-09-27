@@ -37,7 +37,7 @@ int main()
     {
         exampleAlgo ea(BullsCows.getWordList());
         findWordAlgo *algo = &ea;
-        BullsCows.tryAlgorithm(algo,10,oFile,1);
+        BullsCows.tryAlgorithm(algo,10,cout,0);
     }
 
     return 0;

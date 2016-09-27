@@ -10,7 +10,6 @@ class exampleAlgo : public findWordAlgo
         void initAlgo(int wordLength);
         std::string newGuess();
         void result(int bulls, int cows);
-        void result(int cows);
     private:
         /// your own variables and functions goes here
 

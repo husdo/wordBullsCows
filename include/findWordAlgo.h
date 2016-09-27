@@ -10,7 +10,6 @@ class findWordAlgo
         virtual std::string newGuess() = 0;
         virtual void initAlgo(int wordLength) = 0;
         virtual void result(int bulls, int cows) = 0;
-        virtual void result(int cows) = 0;
         findWordAlgo(std::vector<std::string> wordList);
     protected:
         std::vector<std::string> wordList;

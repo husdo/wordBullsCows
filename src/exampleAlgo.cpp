@@ -27,8 +27,3 @@ void exampleAlgo::result(int bulls, int cows)
 {
 
 }
-
-void exampleAlgo::result(int cows)
-{
-
-}
