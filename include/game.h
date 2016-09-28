@@ -20,6 +20,7 @@ class game
         std::string setWordToFind();
         std::string setWordToFind(int wordLength);
         bool setWordToFind(std::string word);
+        void setRandomSeed(int randomSeed);
 
         bool tryWord(std::string word);
         std::string printWord(int number);
@@ -41,7 +42,10 @@ class game
         std::vector<std::string> wordList;
         std::string wordToFind,lastGuess,errorMessage;
         int steps,cows,bulls,win,errorCode;
+        std::vector<std::string> randomTestWords;
+
         std::vector<std::string> readWordList(std::string fileName);
+
 };
 
 #endif // GAME_H

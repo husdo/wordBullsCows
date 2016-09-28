@@ -51,7 +51,17 @@ bool game::setWordToFind(std::string word)
     {
         return false;
     }
+}
 
+void game::setRandomSeed(int randomSeed)
+{
+    srand(randomSeed);
+    int wordNumber;
+    for (int i=0;i<100;i++)
+    {
+        wordNumber = rand()%wordList.size();
+        this->randomTestWords.push_back(wordList[wordNumber]);
+    }
 }
 
 bool game::tryWord(std::string word){
@@ -160,7 +170,8 @@ std::string game::printInfo()
 
 void game::tryAlgorithm(findWordAlgo* fwa,int numberOfWords, std::ostream& out, bool debug)
 {
-    double sumSteps;
+    double sumSteps = 0;
+
     for (int i=0;i<numberOfWords;i++)
     {
         std::string word = this->setWordToFind();
@@ -185,6 +196,36 @@ void game::tryAlgorithm(findWordAlgo* fwa,int numberOfWords, std::ostream& out, 
         }
         out<< "Word to find: "<<wordToFind<<" in "<<steps<<" steps.\n";
         sumSteps += steps;
+    }
+
+    if(numberOfWords==-1)
+    {
+        for(int i=0;i<randomTestWords.size();i++)
+        {
+            std::string word = randomTestWords[i];
+            this->setWordToFind(word);
+            fwa->initAlgo(word.length());
+            win = 0;
+            while (!win){
+                std::string guess = fwa->newGuess();
+                if (this->tryWord(guess))
+                {
+                    fwa->result(bulls,cows);
+                }
+                else
+                {
+                    out<<errorMessage<<std::endl<<"The test stopped!";
+                    return;
+                }
+
+                if (debug)
+                {
+                    out<<"Word to find: "<<wordToFind<<" Guessed word: "<<guess<<" Result: Bulls:"<<bulls<<" Cows:"<<cows<<"\n";
+                }
+            }
+            out<< "Word to find: "<<wordToFind<<" in "<<steps<<" steps.\n";
+            sumSteps += steps;
+        }
     }
 
     out<<"The average steps: "<<sumSteps/numberOfWords<<"\n";
