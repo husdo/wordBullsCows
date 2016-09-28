@@ -175,6 +175,7 @@ void game::tryAlgorithm(findWordAlgo* fwa,int numberOfWords, std::ostream& out, 
     for (int i=0;i<numberOfWords;i++)
     {
         std::string word = this->setWordToFind();
+        out<<"Word to find: "<<wordToFind<<std::endl;
         fwa->initAlgo(word.length());
         win = 0;
         while (!win){
@@ -200,6 +201,7 @@ void game::tryAlgorithm(findWordAlgo* fwa,int numberOfWords, std::ostream& out, 
 
     if(numberOfWords==-1)
     {
+        numberOfWords = randomTestWords.size();
         for(int i=0;i<randomTestWords.size();i++)
         {
             std::string word = randomTestWords[i];
